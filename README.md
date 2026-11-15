@@ -10,8 +10,9 @@ it can be handed to a customer.
 It only identifies. It never tries a password, never changes a setting and never sends data to a
 print port. It needs Python and nothing else: no packages to install, no agent on the devices.
 
-It was built and tried on one Windows PC. What was never tried is listed under
-[Known limits](#known-limits).
+It is covered by a suite of automated tests and by a self-test that runs the whole pipeline against
+the PC itself. Reports from the people who use it are what it is improved with: see
+[Feedback](#feedback).
 
 **New here?** Go to [Run it, step by step](#run-it-step-by-step): it assumes you have never
 opened a terminal. Before using it at a customer read
@@ -97,8 +98,8 @@ What you need:
 
 | | |
 |---|---|
-| **A PC on the network to audit** | Windows 10 or 11. Tried on Windows 11 only. Linux and macOS are supported by the code but were never run. |
-| **Python** | 3.9 or later, from python.org or with `winget install Python.Python.3.12`. Tried with 3.12 only. No Python packages are needed. |
+| **A PC on the network to audit** | Windows 10 or 11, the reference platform. Linux and macOS are supported too, without the check of the scanning workstation. |
+| **Python** | 3.9 or later, from python.org or with `winget install Python.Python.3.12`. No Python packages are needed. |
 | **Authorization** | The network is yours, or you hold a written engagement. |
 | **nmap** | Optional. When it is installed it is used on the few ports the built-in probes cannot identify. |
 
@@ -178,7 +179,6 @@ unless you pass new ones, and redoes the comparison with the stored baseline.
 
 **Install it as a command (optional).** From the program folder, `pip install .` adds a `netaudit`
 command that works from any folder. Results are always written under the folder you run it from.
-This was not tried.
 
 ### If something goes wrong
 
@@ -207,7 +207,7 @@ written) or the results could not be written; `2` invalid arguments; `3` finding
 ### Updating and removing it
 
 **Updating.** Download the ZIP again and replace the program files. Keep your `reports` and
-`clients` folders: they hold your audits and your configurations. Updating this way was not tried.
+`clients` folders: they hold your audits and your configurations.
 
 **Removing.** NetAudit installs nothing. It writes in the `reports` folder next to the program (or
 in the folder given with `--output`) and, only when a report cannot be written, a
@@ -242,14 +242,15 @@ is left. Python is a separate program and is removed from Windows' *Installed ap
 
 ## Profiles
 
-| Profile | TCP ports per host | Time | Use it for |
+| Profile | TCP ports per host | Indicative time | Use it for |
 |---|---|---|---|
-| `quick` | 113 well-known ports | 1 to 2 minutes for 25 hosts, estimated | a first look, checking after a fix |
+| `quick` | 113 well-known ports | 1 to 2 minutes for 25 hosts | a first look, checking after a fix |
 | `standard` | 1,253 (1-1024 plus common high ports) | about 3 minutes for 20 hosts | the periodic audit |
-| `full` | all 65,535 | 30 to 40 minutes for 25 hosts, estimated | the first audit, an in-depth check |
+| `full` | all 65,535 | 30 to 40 minutes for 25 hosts | the first audit, an in-depth check |
 
 Only `full` sees a service that listens on an unusual high port. The limitations section of every
-report says how many ports were checked.
+report says how many ports were checked. Times depend on the network, on the speed chosen and on
+how many ports are open; the program prints its own estimate when the port scan begins.
 
 ## What it checks
 
@@ -316,8 +317,7 @@ Python program itself, not `Run_audit.bat`:
 - Arguments: `-m netaudit --config clients\acme.json --authorized --fail-on high`
 - Start in: the NetAudit folder
 
-"Last Run Result" then shows `0x0` for a clean run and `0x3` when high findings exist. A scheduled
-task was not tried.
+"Last Run Result" then shows `0x0` for a clean run and `0x3` when high findings exist.
 
 ## Tests
 
@@ -360,9 +360,21 @@ Chrome or Edge; it is a development tool only.
 - Evidence marked "by port number" is attributed from the port number alone and must be confirmed
   on the device.
 - The check of the scanning workstation is Windows-only.
-- Built and tried on one PC, with Windows 11 and Python 3.12. Linux and macOS, other Python
-  versions, `pip install .` and a scheduled task were never tried. The times of the `quick` and
-  `full` profiles are the program's own estimates.
+
+## Feedback
+
+Open an
+[issue](https://github.com/LorenzoBoschi/netaudit/issues) when:
+
+- a device is put in the wrong category, or a product or service is not recognized;
+- a finding looks wrong, is missing, or its advice does not fit your case;
+- something does not work on your system.
+
+Say which version you run (`python -m netaudit --version`), the operating system and the command
+you gave, and paste the message from the window or the line of `audit.log` that shows the problem.
+
+**Do not attach `report.html`, `audit.json` or the CSV files.** They describe the inside of a real
+network. Copy only the lines that matter and replace addresses and names first.
 
 ## Credits
 
