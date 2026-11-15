@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 470" role="img" aria-labelledby="t d" font-family="Bahnschrift, DIN Alternate, Segoe UI, system-ui, -apple-system, Helvetica Neue, Arial, sans-serif">
+  <title id="t">How a NetAudit run flows</title>
+  <desc id="d">The operator starts NetAudit on one PC. It collects in six phases from the local network without logging in or changing anything, applies the rules to classify devices and raise findings, and writes a results folder. The saved audit.json is the baseline of the next audit.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#898781"/>
+    </marker>
+  </defs>
+  <rect width="920" height="470" rx="18" fill="#0d0d0d"/>
+  <g fill="#1a1a19" stroke="#383835" stroke-width="1.2">
+    <rect x="30" y="60" width="160" height="210" rx="10"/>
+    <rect x="30" y="340" width="160" height="100" rx="10"/>
+    <rect x="610" y="40" width="280" height="130" rx="10"/>
+    <rect x="610" y="210" width="280" height="130" rx="10"/>
+  </g>
+  <rect x="250" y="40" width="300" height="300" rx="12" fill="#16202e" stroke="#3987e5" stroke-width="1.6"/>
+  <g fill="none" stroke="#383835" stroke-width="1.2" stroke-dasharray="5 4">
+    <rect x="250" y="380" width="300" height="60" rx="10"/>
+    <rect x="610" y="380" width="280" height="60" rx="10"/>
+  </g>
+  <g fill="#f0efec" font-size="15" font-weight="600" text-anchor="middle">
+    <text x="110" y="90">Local network</text>
+    <text x="110" y="370">Operator</text>
+    <text x="400" y="68" fill="#6da7ec">Collection</text>
+    <text x="750" y="68">Rules</text>
+    <text x="750" y="238">Results folder</text>
+  </g>
+  <g fill="#898781" font-size="12.5" text-anchor="middle">
+    <text x="110" y="118">hosts, open ports,</text>
+    <text x="110" y="136">services</text>
+    <text x="110" y="172">no login is tried</text>
+    <text x="110" y="190">nothing is changed</text>
+    <text x="110" y="226">print ports are</text>
+    <text x="110" y="244">never sent data</text>
+    <text x="110" y="394">python -m netaudit</text>
+    <text x="110" y="412">or Run_audit.bat,</text>
+    <text x="110" y="430">declares authorization</text>
+    <text x="750" y="94">classify every device</text>
+    <text x="750" y="112">53 findings: risk, action,</text>
+    <text x="750" y="130">timeframe, ATT&amp;CK technique</text>
+    <text x="750" y="152">exposure index 0-100</text>
+    <text x="750" y="264">report.html, self-contained</text>
+    <text x="750" y="282">audit.json, all the data</text>
+    <text x="750" y="300">inventory.csv, findings.csv</text>
+    <text x="750" y="318">summary.md, audit.log</text>
+    <text x="400" y="406">Ctrl+C or a change of network:</text>
+    <text x="400" y="424">a report marked as partial is still written</text>
+    <text x="750" y="406">audit.json is the --baseline of the next</text>
+    <text x="750" y="424">audit, or the input of --regenerate</text>
+  </g>
+  <text x='270' y='96' font-size='13.5' font-weight='600' fill='#f0efec'>Discovery</text><text x='270' y='112' font-size='11.5' fill='#898781'>ping, TCP probe, ARP table, DNS names</text><text x='270' y='137' font-size='13.5' font-weight='600' fill='#f0efec'>Port scan</text><text x='270' y='153' font-size='11.5' fill='#898781'>two passes, every open port confirmed</text><text x='270' y='178' font-size='13.5' font-weight='600' fill='#f0efec'>Identification</text><text x='270' y='194' font-size='11.5' fill='#898781'>banners, HTTP and TLS, SMB, RDP, LDAP</text><text x='270' y='219' font-size='13.5' font-weight='600' fill='#f0efec'>UDP</text><text x='270' y='235' font-size='11.5' fill='#898781'>NetBIOS names, SNMP 'public', UPnP</text><text x='270' y='260' font-size='13.5' font-weight='600' fill='#f0efec'>nmap (optional)</text><text x='270' y='276' font-size='11.5' fill='#898781'>only on ports left unidentified</text><text x='270' y='301' font-size='13.5' font-weight='600' fill='#f0efec'>Scanning workstation</text><text x='270' y='317' font-size='11.5' fill='#898781'>firewall, antivirus, policies (Windows)</text>
+  <g stroke="#2a3a52" stroke-width="1"><path d="M266 120H534M266 161H534M266 202H534M266 243H534M266 284H534"/></g>
+  <g stroke="#898781" stroke-width="1.4" fill="none" marker-end="url(#a)">
+    <path d="M192 165H248" marker-start="url(#a)"/>
+    <path d="M190 390H220V318H248"/>
+    <path d="M550 105H608"/>
+    <path d="M750 170V208"/>
+    <path d="M750 340V378" stroke-dasharray="5 4"/>
+    <path d="M400 340V378" stroke-dasharray="5 4"/>
+  </g>
+</svg>

@@ -1,0 +1,4 @@
+# Batch files must keep Windows line endings in every download, the ZIP included:
+# cmd.exe can lose its place in a .bat with Unix line endings.
+*.bat -text
+*.png binary

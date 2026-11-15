@@ -1,0 +1,12 @@
+{
+  "client": "CHANGE-ME client name",
+  "targets": ["CHANGE-ME, for example 192.168.1.0/24"],
+  "profile": "standard",
+  "speed": "normal",
+  "naming": "",
+  "server-regex": "",
+  "domain": "",
+  "exclude": [],
+  "baseline": "auto",
+  "no-snmp": false
+}

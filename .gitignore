@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.ruff_cache/
+.venv/
+build/
+*.egg-info/
+
+# audit results describe a real network's attack surface: never commit them
+reports/
+netaudit_rescue_*.json
+audit.json
+*.log
+
+# per-client configurations hold real names and address ranges
+clients/
